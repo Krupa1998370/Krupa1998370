@@ -1,0 +1,53 @@
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+
+class BettingActivity : AppCompatActivity() {
+
+    private val bettingTimeInMillis: Long = 15000
+    private val revealCardTimeInMillis: Long = bettingTimeInMillis - 5000
+    private val handler = Handler(Looper.getMainLooper())
+
+    private lateinit var cardView: View
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_betting)
+
+        cardView = findViewById(R.id.card_view) // Example of initializing your cardView
+        startBettingPeriod()
+    }
+
+    private fun startBettingPeriod() {
+        notifyBettingStart()
+
+        handler.postDelayed(revealCardRunnable, revealCardTimeInMillis)
+        handler.postDelayed(endBettingRunnable, bettingTimeInMillis)
+    }
+
+    private val revealCardRunnable = Runnable {
+        revealCard()
+    }
+
+    private val endBettingRunnable = Runnable {
+        endBetting()
+    }
+
+    private fun revealCard() {
+        cardView.visibility = View.VISIBLE
+    }
+
+    private fun endBetting() {
+        notifyBettingEnd()
+    }
+
+    private fun notifyBettingStart() {
+        // Notify user that betting has started
+    }
+
+    private fun notifyBettingEnd() {
+        // Notify user that betting has ended
+    }
+}
