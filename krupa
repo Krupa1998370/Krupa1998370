@@ -1,0 +1,37 @@
+In Android development, the animation XML file should be placed in the res/anim folder (not a zip file or any other format). Here’s a clearer breakdown:
+
+1. Folder Structure:
+
+Path: app/src/main/res/anim/
+
+File: card_reveal.xml
+
+
+
+2. Steps:
+
+Create the Folder: In your Android project, navigate to app/src/main/res/ and create a folder named anim if it doesn't already exist.
+
+Add the File: Save your animation XML code in a file named card_reveal.xml within the anim folder.
+
+
+
+3. Using the Animation in Your Code:
+
+Java/Kotlin: Reference the XML file in your activity or fragment to apply the animation to a view.
+
+
+
+
+Example:
+
+Animation anim = AnimationUtils.loadAnimation(this, R.anim.card_reveal);
+view.startAnimation(anim);
+
+or
+
+val anim = AnimationUtils.loadAnimation(this, R.anim.card_reveal)
+view.startAnimation(anim)
+
+This setup ensures that Android can locate and apply your animation correctly.
+
